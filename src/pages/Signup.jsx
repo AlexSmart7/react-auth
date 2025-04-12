@@ -3,13 +3,18 @@ import logo from "@/assets/react.svg";
 import "@/styles/form.css";
 import { useForm } from "@/hooks/useForm";
 import { registerUserService } from "@/service/useService";
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+
+  const navigate = useNavigate()
+
   const sendData = async (data) => {
     try {
       const response = await registerUserService(data);
       if (response.status === 201) {
         console.log("User created successfully");
+        navigate('/login')
       }
     } catch (error) {
       console.log("Ocurrio un error en signup: ", error.message);
