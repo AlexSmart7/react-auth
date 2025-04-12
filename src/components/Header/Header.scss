@@ -1,0 +1,40 @@
+$menu-color: #3d3d3d;
+
+@mixin header-link($spacing: 2px) {
+    color: $menu-color;
+    text-decoration: none;
+    letter-spacing: $spacing;
+}
+
+.header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+
+    &__logo {
+        @include header-link
+    }
+
+    &__nav-list {
+        display: flex;
+        list-style: none;
+        column-gap: 20px;
+    }
+
+    &__item-link {
+        @include header-link(1px);
+        font: {
+            size: 16px;
+            weingt: 500;
+        }
+
+        &:hover, &--is-active {
+            color: red;
+            border-bottom: solid 2px $menu-color;
+        }
+
+    }
+
+}

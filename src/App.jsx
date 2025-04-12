@@ -1,13 +1,17 @@
-import './App.css'
+import "./App.css";
+import Header from "@/components/Header/Header";
+import { BrowserRouter } from "react-router-dom";
+import RoutesIndex from "@/routes/Index";
 
 function App() {
-
   return (
-
-      <div>
-        <h1>React Auth</h1>
-      </div>
-  )
+    <div>
+      <BrowserRouter>
+        <Header />
+        <RoutesIndex />
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
