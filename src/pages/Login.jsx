@@ -5,6 +5,7 @@ import { useForm } from "@/hooks/useForm";
 import { loginUserService } from "@/service/useService";
 import logo from "@/assets/react.svg";
 import "@/styles/form.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { login } = useAuthContext();
@@ -19,7 +20,7 @@ const Login = () => {
       if (response?.status === 200 && response.data?.token) {
         login(response.data.token);
         //Redireccionar al usuario a la pagina de inicio
-        navigate("/");
+        navigate("/dashboard");
       } else {
         setErrorMsg("Credenciales incorrectas.");
       }
@@ -33,6 +34,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <main className="form-signin">
@@ -54,9 +57,9 @@ const Login = () => {
           <label htmlFor="floatingInput">Ingresa Email</label>
         </div>
 
-        <div className="form-floating">
+        <div className="form-floating position-relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             autoComplete="current-password"
             className="form-control"
             id="floatingPassword"
@@ -66,6 +69,14 @@ const Login = () => {
             onChange={handleInputChange}
           />
           <label htmlFor="floatingPassword">Ingresa Password</label>
+          <button
+            type="button"
+            className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-3"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ zIndex: 10 }}
+          >
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </button>
         </div>
 
         {errorMsg && <div className="alert alert-danger mt-3">{errorMsg}</div>}

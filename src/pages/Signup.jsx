@@ -91,7 +91,7 @@ const Signup = () => {
 
         <div className="form-floating">
           <input
-            type="password"
+            type="text"
             className="form-control"
             id="password"
             name="password"
